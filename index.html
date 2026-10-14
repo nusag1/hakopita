@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+<title>はこぴた</title>
+<meta name="description" content="ブロックをはめて列をそろえる、スマホ向けパズルゲーム">
+<meta name="theme-color" content="#f6f1e9" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#1b1d26" media="(prefers-color-scheme: dark)">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="はこぴた">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icons/icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="app">
+  <header>
+    <div class="score-box"><span class="label">SCORE</span><span id="score">0</span></div>
+    <h1>はこぴた</h1>
+    <div class="score-box right"><span class="label">BEST</span><span id="best">0</span></div>
+  </header>
+
+  <canvas id="cv" aria-label="ゲーム盤面"></canvas>
+
+  <footer>
+    <button id="btn-help" aria-label="遊び方">？</button>
+    <button id="btn-se" aria-label="効果音">🔊</button>
+    <button id="btn-bgm" aria-label="BGM">🎵</button>
+    <button id="btn-restart" aria-label="やり直し">↻</button>
+  </footer>
+
+  <div id="help" class="overlay" hidden>
+    <div class="card">
+      <h2>遊び方</h2>
+      <ol>
+        <li>下のブロックを<b>ドラッグ</b>して盤面にはめよう</li>
+        <li>縦か横の1列がそろうと<b>消えて得点</b></li>
+        <li>続けて消すと<b>コンボ</b>でボーナス！</li>
+        <li>盤面を空っぽにすると<b>「ぴたっ！」</b>大ボーナス</li>
+        <li>どのブロックも置けなくなったら終了</li>
+      </ol>
+      <p class="note">途中でやめても自動で保存されます</p>
+      <button class="primary" id="btn-help-close">はじめる</button>
+    </div>
+  </div>
+
+  <div id="confirm" class="overlay" hidden>
+    <div class="card">
+      <h2>最初からやり直す？</h2>
+      <p class="note">今のスコアは消えます</p>
+      <div class="row">
+        <button class="secondary" id="btn-confirm-no">やめる</button>
+        <button class="primary" id="btn-confirm-yes">やり直す</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="over" class="overlay" hidden>
+    <div class="card">
+      <h2>もう置けない！</h2>
+      <p class="big" id="over-score">0</p>
+      <p class="record" id="over-record" hidden>🎉 自己ベスト更新！</p>
+      <p class="note" id="over-best"></p>
+      <button class="primary" id="btn-again">もう一度</button>
+    </div>
+  </div>
+</div>
+<script src="game.js"></script>
+</body>
+</html>
